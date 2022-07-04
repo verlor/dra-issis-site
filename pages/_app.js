@@ -1,19 +1,22 @@
-import { createContext } from "react"
 import Layout from "../components/Layout"
+import GlobalStyles from '../styles/GlobalStyles'
+import { MDXProvider } from '@mdx-js/react'
+import {H1, H4, P} from '../components/CustomMDX'
 
-const navigation = {
-  current: 'home'
+const components = {
+  h1: H1,
+  h4: H4,
+  p: P,
 }
-
-export const NavContext = createContext(navigation)
 
 function MyApp({ Component, pageProps }) {
   return (
-    <NavContext.Provider value={navigation}>
+    <MDXProvider components={components}>
       <Layout>
+        <GlobalStyles />
         <Component {...pageProps} />
       </Layout>
-    </NavContext.Provider>
+    </MDXProvider>
   )
 }
 
